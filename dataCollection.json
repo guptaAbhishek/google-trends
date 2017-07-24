@@ -1,0 +1,6 @@
+{
+  "sci_tech":"https://trends.google.com/trends/api/stories/latest?hl=en-US&tz=-330&cat=t&fi=15&fs=15&geo=IN&ri=300&rs=15&sort=0",
+  "business":"https://trends.google.com/trends/api/stories/latest?hl=en-US&tz=-330&cat=b&fi=15&fs=15&geo=IN&ri=300&rs=15&sort=0",
+  "entertainment":"https://trends.google.com/trends/api/stories/latest?hl=en-US&tz=-330&cat=e&fi=15&fs=15&geo=IN&ri=300&rs=15&sort=0"
+
+}
