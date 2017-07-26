@@ -18,7 +18,7 @@
         $routeProvider
             .when("/", {
                 templateUrl : "pages/TrendingStories.html",
-                controller:'GooglePageSpeedController'
+                controller:'GoogleTrendsController'
             })
     });
 
