@@ -46,22 +46,8 @@ app.post('/getTrendingStoriesByCategory',function (req,res) {
         request.get({
             url:"https://trends.google.com/trends/api/stories/latest?hl=en-US&tz=-330&cat="+params.code+"&fi=15&fs=15&geo=IN&ri=300&rs=15&sort=0"
         },function(err,response,body){
-            // var model = {
-            //     googleTrending:body,
-            //     date:body.date,
-            //     category:params.code
-            // };
 
-            console.log(body);
             res.send(body);
-            // return;
-            // new GoogleTrendingStories(model).save(function (err) {
-            //    if(err) throw err;
-            //
-            //    res.send({
-            //        message:"Successfully Saved"
-            //    })
-            // });
         });
     }else{
         res.send({
@@ -69,6 +55,83 @@ app.post('/getTrendingStoriesByCategory',function (req,res) {
         })
     }
 });
+
+
+/**
+ * get trending article by id
+ */
+
+
+app.post('/getTrendingStoryById',function (req,res) {
+    var params = req.body.params;
+
+    if(params !== undefined && params !== null && params !== "undefined"){
+        var u = "";
+        for(var i=0;i<10;i++){
+            u += "&id="+params.ids[i];
+        }
+        console.log("u",u);
+        request.get({
+            url:"https://trends.google.com/trends/api/stories/summary?hl=en-US&tz=-330"+u
+        },function(err,response,body){
+           res.send(body);
+        });
+    }else{
+
+    }
+});
+
+
+app.post('/getTrendingStoryByIdv2',function (req,res) {
+   var params = req.body.params;
+
+   if(params !== undefined && params !== null && params !== "undefined"){
+
+       var id = params.story_id;
+
+       request.get({
+           url:"https://trends.google.com/trends/api/stories/"+id+"?hl=en-US&tz=-330&sw=10"
+       },function(err,response,body){
+           res.send(body);
+       });
+   }else{
+
+   }
+});
+
+app.post("/getRelatedQueries",function (req,res) {
+
+    var params = req.body.params;
+
+    if(params !== undefined && params !== null && params !== "undefined"){
+
+        var token = params.token;
+
+        request.get({
+            url:"https://trends.google.com/trends/api/widgetdata/relatedqueries?token="+token+"&hl=en-US&tz=-330"
+        },function(err,response,body){
+            res.send(body);
+        });
+
+    }else{
+
+    }
+
+
+});
+
+
+app.post('/getGoogleHotSearches',function (req,res) {
+    /**
+     *
+     */
+    request.get({
+        url:"https://trends.google.com/trends/hottrends/visualize/internal/data"
+    },function(err,response,body){
+        res.send(body);
+    });
+});
+
 
 
 app.post('/interestOverTime',function (req,res) {

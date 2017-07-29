@@ -4,38 +4,77 @@
             <a class="navbar-brand" href="#">
                 <img alt="Brand" src="img/ht_logo-square.png" style="width: 50px;height: 50px;">
             </a>
-
-
         </div>
-        <!--<div>-->
-        <!--<button class="btn btn-danger pull-right" style="margin-top: 7px;" ng-click="logout()">Logout</button>-->
-        <!--</div>-->
     </div>
 </nav>
-<div class="container">
+<div class="container" style="width: 100%;">
     <div class="row">
-        <div class="col-md-4 col-lg-4 col-sm-4" ng-repeat="t in trendingStories.storySummaries.trendingStories">
-            <div class="card">
-                <div class="card-image">
-                    <img src="{{t.image.imgUrl}}" class="img-responsive">
-                    <span class="card-title"></span>
-                </div>
-                <div class="card-content">
-                    <p>{{t.title}}</p>
-                </div>
-                <div class="card-action">
-                    <a href="#" data-toggle="modal" ng-click="open_modal(t)" data-target="#myModal">Related Articles</a>
+        <ul class="nav nav-pills">
+            <li ng-repeat="c in categories"><a data-toggle="pill" ng-click="category_clicked(c)">{{c.category}}</a></li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="tab-content">
+                <div id="{{category}}">
+                    <h5>{{category}} {{date}}</h5>
+                    <div class="row card">
+                        <div class="card" ng-repeat="t in trendingData.storySummaries.trendingStories">
+                            Hindustan Times Rank : {{t.htComRank}}
+                            <div class="col-md-3">
+                                <img src="{{t.image.imgUrl}}" href="{{t.image.newsUrl}}" style="cursor: pointer;" title="Click to go to news">
+                            </div>
+                            <div class="col-md-9">
+                                <div class="card-content">
+                                    <p>{{t.title}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div ng-repeat="a in t.articles">
+                                        <div class="row">
+                                            <a href="{{a.url}}" style="font-size: 14px;">{{$index}}.{{a.source}}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+        <div class="col-md-3">
+            <h5>Hot Searches Google</h5>
+            <div class="row" ng-repeat="t in hotKeyWords">
+                <a href="#" >{{t.keywords}}</a>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <h5>News Facebook</h5>
+        </div>
 
+
+    </div>
 </div>
 
 
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        {{modal_data}}
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <h5>Related Articles</h5>
+            <hr/>
+        </div>
+    </div>
+
+    <div class="row" ng-repeat="t in modal_data.articles">
+        <div class="col-md-8">
+            <h5><a href="{{t.url}}" target="_blank">{{$index}} . {{t.articleTitle}}</a></h5>
+            <p>Time : {{t.time}}</p>
+            <p>Source : {{t.source}}</p>
+        </div>
+
     </div>
 </div>
