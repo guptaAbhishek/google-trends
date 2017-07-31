@@ -1,0 +1,29 @@
+<input type="hidden" id="ids" value="{{ids}}" ng-model="storiesId">
+
+<script type="text/javascript">
+    setTimeout(function(){
+        var arra = $('#ids').val();
+        console.log(arra);
+    }, 2000);
+
+
+
+    var arr = [{
+        id:'IN_lnk_d8Ih3QAwAABWrM_ml'
+    },{
+        id:'IN_lnk_Ub753AAwAACo0M_ml'
+    }];
+
+
+
+
+    arr.forEach(function(obj,key){
+        trends.embed.renderWidget(
+            obj.id,
+            "RELATED_QUERIES",
+            {
+                "guestPath":"https://trends.google.com:443/trends/embed/"
+            }
+        );
+    });
+</script>

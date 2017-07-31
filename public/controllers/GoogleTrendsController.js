@@ -7,11 +7,10 @@
     GoogleTrendsController.controller('GoogleTrendsController',['$scope','DataServices',function ($scope,DataServices) {
 
         $scope.category = "";
-
         $scope.getTrendingStoriesByCategory = function(params){
             DataServices._getTrendingStoriesByCategory(params).then(function(response){
                 if(response.status === 200){
-                    console.log(response.data);
+                    // console.log(response.data);
                 }else{
                     $scope.error = response.status;
                 }
@@ -34,11 +33,18 @@
                     $scope.date = response.data.date;
                     $scope.trendingData = response.data;
                     // console.log($scope.trendingData);
+
+
+
                     /**
                      * Get the rank of hindustan times
                      */
+                    $scope.trendingStorieIds = [];
                     $scope.trendingData.storySummaries.trendingStories.forEach(function (obj,key) {
                         var rank = [];
+
+                        $scope.trendingStorieIds.push(obj.id);
+
                         obj.articles.forEach(function(o,k){
                             if(o.url.indexOf("hindustantimes") !== -1){
                                 rank.push({
@@ -51,6 +57,9 @@
                         });
                     });
 
+                    // console.log($scope.trendingStorieIds);
+
+
 
 
                     // console.log($scope.trendingData);
@@ -62,32 +71,24 @@
         };
         $scope.category_clicked(t);
 
-        // $scope.getTrendingStoryById = function (params) {
-        //     DataServices._getTrendingStoryById(params).then(function(response){
-        //         console.log(response);
-        //     });
-        // };
-
 
         var p = {
             story_id:"IN_lnk_Ub753AAwAACo0M_ml"
         };
 
-
-
         $scope.getTrendingStoryByIdv2 = function (params) {
           DataServices._getTrendingStoryByIdv2(params).then(function(response){
-                console.log(response);
+                // console.log(response);
                 $scope.trendingStoryData = response.data;
 
                 $scope.trendingStoryData.widgets.forEach(function(obj,key){
                     if(obj.id === "RELATED_QUERIES"){
-                        console.log('obj.token',obj.token);
+                        // console.log('obj.token',obj.token);
                         DataServices._getRelatedQueries({token:obj.token}).then(function(repsonse){
-                            console.log(response);
+                            // console.log(response);
                         });
                     }else{
-                        console.log('could not get RELATED_QUERIES');
+                        // console.log('could not get RELATED_QUERIES');
                     }
 
                 });
@@ -113,6 +114,25 @@
 
         $scope.getTrendingStoryByIdv2(p)
 
+        /**
+         *
+         * @param
+         * {
+         *     id:"news organization main url "
+         * }
+         *
+         */
+        var getNewsFromWeb = function(params){
+            DataServices._getArticlesFromWeb(params).then(function (response) {
+               console.log(response);
+            });
+        };
+
+        var indiaCom = {
+            id:"http://www.india.com/"
+        };
+
+        getNewsFromWeb(indiaCom);
 
 
     }]);

@@ -63,6 +63,18 @@
                 });
 
                 return deferred.promise;
+            },
+
+            _getArticlesFromWeb:function(params){
+                var deferred = $q.defer();
+                $http.post('/getArticlesFromWeb',{params:params})
+                    .then(function(data) {
+                        deferred.resolve(data);
+                    }).catch(function(){
+                    deferred.reject();
+                });
+
+                return deferred.promise;
             }
 
         }

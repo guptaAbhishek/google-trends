@@ -1,0 +1,110 @@
+[
+  {
+  "id":"http://hindustantimes.com",
+    "article":{
+      "heading":{
+        "attribute":"itemprop",
+        "name":"headline"
+      },
+      /*get text for this class and remove unwanted links and iframes */
+      "body":{
+        "attribute":"class",
+        "name":"articleBody"
+      },
+      /*get the summary */
+      "summary":{
+        "attribute":"itemprop",
+        "name":"description"
+      },
+      /*iterate class topics-tags eventtracker
+        get element a.text()
+      */
+      "tags":{
+        "attribute":"class",
+        "name":"topics-tags eventtracker"
+      }
+    },
+    "publishedTime":"itemprop='author'"
+  },
+  {
+    "id":"http://timesofindia.indiatimes.com/",
+    "article":{
+      "heading":{
+        "attribute":"itemprop",
+        "name":"headline"
+      },
+      /*get text for this class and remove unwanted links and iframes */
+      "body":{
+        "attribute":"class",
+        "name":"articleBody"
+      },
+      /*get the summary */
+      "summary":{
+        "attribute":"itemprop",
+        "name":"description"
+      },
+      /*iterate class topics-tags eventtracker
+        get element a.text()
+      */
+      "tags":{
+        "attribute":"class",
+        "name":"topics-tags eventtracker"
+      }
+    },
+    "publishedTime":"itemprop='author'"
+  },
+  {
+    "id":"http://www.india.com/",
+    "article":{
+      "heading":{
+        "attribute":"itemprop",
+        "name":"headline"
+      },
+      /*get text for this class and remove unwanted links and iframes */
+      "body":{
+        "attribute":"class",
+        "name":"articleBody"
+      },
+      /*get the summary */
+      "summary":{
+        "attribute":"itemprop",
+        "name":"description"
+      },
+      /*iterate class topics-tags eventtracker
+        get element a.text()
+      */
+      "tags":{
+        "attribute":"class",
+        "name":"topics-tags eventtracker"
+      }
+    },
+    "publishedTime":"itemprop='author'"
+  },
+  {
+    "id":"",
+    "article":{
+      "heading":{
+        "attribute":"itemprop",
+        "name":"headline"
+      },
+      /*get text for this class and remove unwanted links and iframes */
+      "body":{
+        "attribute":"class",
+        "name":"articleBody"
+      },
+      /*get the summary */
+      "summary":{
+        "attribute":"itemprop",
+        "name":"description"
+      },
+      /*iterate class topics-tags eventtracker
+        get element a.text()
+      */
+      "tags":{
+        "attribute":"class",
+        "name":"topics-tags eventtracker"
+      }
+    },
+    "publishedTime":"itemprop='author'"
+  }
+]

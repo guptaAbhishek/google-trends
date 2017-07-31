@@ -6,6 +6,7 @@ var request = require('request');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var configs = require('./configs');
+var fs = require('fs');
 
 
 mongoose.connect('mongodb://'+configs.dbHost+'/'+configs.dbName);
@@ -84,52 +85,52 @@ app.post('/getTrendingStoryById',function (req,res) {
 
 app.post('/getTrendingStoryByIdv2',function (req,res) {
    var params = req.body.params;
-
    if(params !== undefined && params !== null && params !== "undefined"){
-
        var id = params.story_id;
-
        request.get({
            url:"https://trends.google.com/trends/api/stories/"+id+"?hl=en-US&tz=-330&sw=10"
        },function(err,response,body){
            res.send(body);
        });
-   }else{
-
-   }
+   }else{}
 });
 
 app.post("/getRelatedQueries",function (req,res) {
-
     var params = req.body.params;
-
     if(params !== undefined && params !== null && params !== "undefined"){
-
         var token = params.token;
-
         request.get({
-            url:"https://trends.google.com/trends/api/widgetdata/relatedqueries?token="+token+"&hl=en-US&tz=-330"
+            url:"https://trends.google.com/trends/embed/IN_lnk_d8Ih3QAwAABWrM_ml/RELATED_QUERIES"
         },function(err,response,body){
             res.send(body);
         });
-
-    }else{
-
-    }
-
-
+    }else{}
 });
 
-
 app.post('/getGoogleHotSearches',function (req,res) {
-    /**
-     *
-     */
     request.get({
         url:"https://trends.google.com/trends/hottrends/visualize/internal/data"
     },function(err,response,body){
         res.send(body);
     });
+});
+
+app.post('/getArticlesFromWeb',function(req,res){
+    /**
+     * Read GetNewsFromWeb
+     * identify the id(news organization) and read the configuration
+     *
+     */
+
+    var obj;
+    fs.readFile('./GetNewsFromWeb.json', 'utf8', function (err, data) {
+        if (err) throw err;
+        obj = JSON.parse(data);
+        res.send(obj);
+    });
+
+
+
 });
 
 

@@ -21,6 +21,10 @@
                 templateUrl : "pages/TrendingStories.html",
                 controller:'GoogleTrendsController'
             })
+            .when('/tq',{
+                templateUrl : "pages/TrendingQueries.html",
+                controller:'GoogleTrendsController'
+            })
     });
 
 
